@@ -696,13 +696,72 @@ ul:not(.admin-block ul) li::before {
   outline: none;
 }
 
-/* --- Макет главной страницы с тремя блоками --- */
+/* --- Выпадающее меню из иконки (плавное появление) --- */
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: transparent; /* прозрачный фон, чтобы не было подложки */
+  list-style: none;
+  padding: 4px 0;
+  margin: 0;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #ffb84d;
+  text-decoration: none;
+  font-family: 'Georgia', serif;
+  font-size: 1em;
+  border-radius: 0;
+  background: transparent;
+  transition: background 0.25s, color 0.25s;
+  user-select: none;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus,
+.dropdown-menu li a.active {
+  background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
+  color: #3e2a13;
+  outline: none;
+}
+
+/* --- Основной макет главной страницы с горизонтальным делением --- */
 .three-columns {
   display: flex;
-  height: calc(100vh - 64px); /* высота минус футер если нужно */
+  height: calc(100vh - 56px); /* высота контента без футера */
   gap: 16px;
   padding: 20px;
   box-sizing: border-box;
+  background: linear-gradient(135deg, #2c1a0f 0%, #4e2a0a 100%);
 }
 
 .left-block, .right-block {
@@ -710,11 +769,12 @@ ul:not(.admin-block ul) li::before {
   background: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
   border-radius: 16px;
   box-shadow: 0 4px 20px 0 rgba(255, 184, 77, 0.11), 0 0 0 2px #1b1408 inset;
-  padding: 20px 24px;
+  padding: 24px 28px;
   color: #f5e6c4;
   overflow-y: auto;
 }
 
+/* Навигация в левом блоке */
 .side-menu a {
   display: block;
   padding: 12px 18px;
@@ -726,6 +786,7 @@ ul:not(.admin-block ul) li::before {
   margin-bottom: 12px;
   text-decoration: none;
   transition: background 0.25s, color 0.25s;
+  user-select: none;
 }
 
 .side-menu a.active,
@@ -733,10 +794,14 @@ ul:not(.admin-block ul) li::before {
 .side-menu a:focus {
   background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
   color: #3e2a13;
+  outline: none;
 }
 
+/* Вертикальное деление в правом блоке на 3 части */
 .right-block section {
   margin-bottom: 24px;
+  height: calc((100% - 48px) / 3);
+  overflow-y: auto;
 }
 
 .right-block section h2 {
@@ -753,25 +818,37 @@ ul:not(.admin-block ul) li::before {
   line-height: 1.4em;
 }
 
-/* Три равных блока по высоте */
-.top-third, .middle-third, .bottom-third {
-  height: calc((100% - 48px) / 3); /* Три блока с отступами */
-  overflow-y: auto;
+.event-block img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ffb84daa;
+  user-select: none;
+  pointer-events: none;
 }
 
-/* Управление отображением scrollbar для правого блока (если понадобится) */
+.right-block iframe {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 0 20px #ffb84daa;
+  user-select: none;
+  pointer-events: auto;
+}
+
+/* Скроллбар для правого блока */
 .right-block::-webkit-scrollbar {
   width: 8px;
 }
+
 .right-block::-webkit-scrollbar-thumb {
   background: #ffb84d88;
   border-radius: 6px;
 }
+
 .right-block::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* Для мобильных экранов - вертикальный макет */
+/* Адаптив */
 @media (max-width: 900px) {
   .three-columns {
     flex-direction: column;
@@ -785,3 +862,4 @@ ul:not(.admin-block ul) li::before {
     margin-bottom: 20px;
   }
 }
+

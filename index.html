@@ -24,10 +24,9 @@
 </nav>
 
 <div class="content-wrapper three-columns">
-
   <aside class="left-block">
-    <!-- Навигация (можем повторить меню для удобства) -->
-    <nav class="side-menu">
+    <!-- Навигация (без выпадающего меню, просто список ссылок) -->
+    <nav class="side-menu" aria-label="Основная навигация">
       <a href="index.html" class="active">Главная</a>
       <a href="news.html">Новости</a>
       <a href="guide.html">Гайды</a>
@@ -38,18 +37,17 @@
   </aside>
 
   <main class="right-block">
-
     <section class="top-third event-block">
       <h2>Текущее событие</h2>
       <p>Добро пожаловать на наш увлекательный модовый SMP-сервер! Следите за новостями и не пропускайте предстоящие ивенты, где вас ждут драконы, ритуалы и приключения.</p>
-      <img src="news-images/2025-04-08_15.36.40.png" alt="Текущее событие" style="max-width: 100%; border-radius: 12px; box-shadow: 0 0 20px #ffb84daa;" />
+      <img src="news-images/2025-04-08_15.36.40.png" alt="Текущее событие" />
     </section>
 
     <section class="middle-third discord-widget">
       <h2>Discord сервер</h2>
-      <!-- Встроенный Discord iFrame виджет -->
       <iframe src="https://discord.com/widget?id=YOUR_DISCORD_SERVER_ID&theme=dark" 
-              width="100%" height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+              width="100%" height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" 
+              title="Discord сервер"></iframe>
       <!-- Замените YOUR_DISCORD_SERVER_ID на ваш ID сервера в Discord -->
     </section>
 
@@ -62,14 +60,11 @@
         <li>Grobberus - админ: <a href="mailto:grobberus@example.com">grobberus@example.com</a></li>
       </ul>
     </section>
-
   </main>
-
 </div>
 
 <footer>
   <p>© Любители приключений, 2025</p>
 </footer>
-
 </body>
 </html>
