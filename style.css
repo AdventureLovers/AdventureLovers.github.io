@@ -1,9 +1,10 @@
-/* Сбросы */
+/* Сбросы и базовые стили */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0; padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 html, body {
@@ -34,7 +35,7 @@ body::-webkit-scrollbar-thumb:hover {
   background: #ffb84ddd;
 }
 
-/* Навигация слева */
+/* Левая панель навигации */
 nav.side-nav {
   width: 170px;
   padding: 20px 0;
@@ -148,7 +149,7 @@ nav.side-nav {
   margin-left: 170px;
   max-width: calc(100vw - 170px);
   min-height: 100vh;
-  padding: 20px 32px 60px;
+  padding: 20px 32px 80px; /* учли футер */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -363,7 +364,8 @@ nav.side-nav {
 }
 
 /* Новости и гайды - общий стиль контейнеров */
-.news-item, .guide-item {
+.news-item,
+.guide-item {
   background: #3e2a13cc;
   padding: 16px 20px;
   border-radius: 12px;
@@ -372,10 +374,12 @@ nav.side-nav {
   user-select: text;
   transition: box-shadow 0.25s ease;
 }
-.news-item:hover, .guide-item:hover {
+.news-item:hover,
+.guide-item:hover {
   box-shadow: 0 0 28px #ffb84daa inset;
 }
-.news-item time, .news-date {
+.news-item time,
+.news-date {
   display: block;
   font-weight: bold;
   color: #ffb84d;
@@ -389,7 +393,8 @@ nav.side-nav {
   margin-bottom: 12px;
   box-shadow: 0 0 10px #ffb84d77;
 }
-.news-text, .guide-item p {
+.news-text,
+.guide-item p {
   white-space: pre-line;
   line-height: 1.45;
   color: #f5e6c4;
@@ -405,35 +410,125 @@ h1 {
   text-shadow: 0 0 8px #ffb84d44;
 }
 
-/* Футер */
+/* Футер без фона и не фиксированный */
 footer {
   height: 56px;
   line-height: 56px;
-  position: fixed;
-  bottom: 0;
-  left: 170px;
-  right: 0;
   text-align: center;
   color: #d9c9a3;
   text-shadow: 0 0 3px #ffb84d;
   font-size: 0.9em;
-  background: transparent;
   box-sizing: border-box;
   user-select: none;
 }
 
-/* Адаптив */
+/* ----------- Правила ----------- */
+/* Правила страницы */
+.rules-main {
+  padding: 32px 40px;
+  max-width: 1125px; /* увеличена ширина на 25% */
+  margin: 0 auto 80px auto;
+  background: linear-gradient(120deg, rgba(30, 20, 10, 0.85) 80%, rgba(60, 30, 10, 0.9) 100%);
+  border-radius: 20px;
+  box-shadow:
+    0 0 30px 4px #ffb84d66 inset,
+    0 8px 24px -4px rgba(255, 184, 77, 0.45);
+  color: #f5e6c4;
+  font-family: 'Georgia', serif;
+}
+
+.rules-main h1 {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #ffb84d;
+  text-shadow: 0 0 12px #ffb84d88;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.rules-main .rules-intro {
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin-bottom: 28px;
+  color: #f0e3bb;
+  text-align: center;
+  user-select: text;
+}
+
+.rules-section {
+  margin-bottom: 36px;
+  user-select: text;
+}
+
+.rules-section h2 {
+  font-size: 1.5em;
+  color: #ffb84d;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-shadow: 0 0 8px #ffb84d66;
+  border-bottom: 2px solid #ffb84d88;
+  padding-bottom: 6px;
+}
+
+/* Убираем пользовательские маркеры ::before */
+.rules-list,
+.admin-list {
+  list-style: disc inside; /* стандартные круглые маркеры, ближе к тексту */
+  padding-left: 1em;
+  color: #fff8d6;
+  font-size: 1.04em;
+  line-height: 1.6;
+  border-left: none;
+  margin-bottom: 0;
+}
+
+.rules-list li,
+.admin-list li {
+  margin-bottom: 12px;
+  padding-left: 0;
+  position: static;
+  user-select: text;
+}
+
+/* Выделение важных слов */
+.rules-list strong,
+.admin-list strong {
+  color: #ffd974;
+  font-weight: 600;
+}
+
+/* Кодовые и специальные элементы */
+.rules-list code {
+  background: #4e2a0a;
+  color: #ffb84d;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95em;
+  user-select: text;
+}
+
+/* Ссылки внутри текста */
+.rules-list a,
+.admin-list a {
+  color: #ffb84d;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+.rules-list a:hover,
+.admin-list a:hover,
+.rules-list a:focus,
+.admin-list a:focus {
+  color: #ff8c00;
+  outline: none;
+}
+
+/* Адаптация под мобильные */
 @media (max-width: 900px) {
-  nav.side-nav {
-    display: none;
-  }
-  footer {
-    left: 0;
-  }
   .content-wrapper {
     margin-left: 0;
     max-width: 100vw;
-    padding: 10px 20px 80px;
+    padding: 20px 20px 80px;
   }
   .horizontal-layout {
     flex-direction: column;
@@ -447,6 +542,13 @@ footer {
     margin-top: 16px;
     padding: 16px;
   }
+  footer {
+    left: 0;
+  }
+  .rules-main {
+    max-width: 100%;
+    padding: 24px 20px;
+  }
 }
 
 /* Меньше экран */
@@ -454,65 +556,17 @@ footer {
   .content-wrapper {
     padding: 6px 10px 80px;
   }
-}
-
-/* Правила страницы - обновлено для кружочков и ширины */
-.rules-main {
-  padding: 32px 40px;
-  max-width: 1125px; /* ~25% шире, было 900px */
-  margin: 0 auto 80px auto;
-  background: linear-gradient(120deg, rgba(30, 20, 10, 0.85) 80%, rgba(60, 30, 10, 0.9) 100%);
-  border-radius: 20px;
-  box-shadow:
-    0 0 30px 4px #ffb84d66 inset,
-    0 8px 24px -4px rgba(255, 184, 77, 0.45);
-  color: #f5e6c4;
-  font-family: 'Georgia', serif;
-}
-
-/* Заменяем ромбики на кружочки */
-/* Убираем старые маркеры */
-.rules-list li::before,
-.admin-list li::before {
-  content: "•";            /* кружок */
-  color: #ffb84d;
-  font-size: 1.3em;
-  position: absolute;
-  left: -18px;             /* чуть ближе к тексту чем было */
-  top: 0.12em;             /* выровнять по вертикали */
-  line-height: 1;
-}
-
-/* Отступ для содержимого li, чтобы место оставить для кружка */
-.rules-list li,
-.admin-list li {
-  padding-left: 22px;  /* чуть меньше, чтобы кружок ближе */
-  position: relative;
-  margin-bottom: 12px;
-  user-select: text;
-}
-
-/* Фиксированный футер внизу экрана */
-footer {
-  position: fixed !important;
-  bottom: 0;
-  left: 170px; /* под ширину навигации */
-  right: 0;
-  height: 56px;
-  line-height: 56px;
-  text-align: center;
-  color: #d9c9a3;
-  text-shadow: 0 0 3px #ffb84d;
-  font-size: 0.9em;
-  background: rgba(30, 20, 10, 0.9);
-  box-sizing: border-box;
-  user-select: none;
-  z-index: 1500;
-}
-
-/* Адаптив для футера */
-@media (max-width: 900px) {
-  footer {
-    left: 0;
+  .rules-main {
+    padding: 24px 15px;
+  }
+  .rules-main h1 {
+    font-size: 1.8em;
+  }
+  .rules-section h2 {
+    font-size: 1.3em;
+  }
+  .rules-list li,
+  .admin-list li {
+    font-size: 1em;
   }
 }
