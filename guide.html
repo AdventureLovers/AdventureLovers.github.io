@@ -1,45 +1,75 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Гайд — Немного о модах</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="icon.png" type="image/png" />
-  <script defer src="dropdown-menu.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js" defer></script>
-</head>
-<body>
-<nav class="side-nav">
-  <div class="logo-wrapper dropdown-wrapper">
-    <img src="icon.png" alt="Иконка сервера" 
-        class="server-icon dropdown-toggle" 
-        tabindex="0" aria-haspopup="true" aria-expanded="false" />
-    <ul class="dropdown-menu" aria-label="Основная навигация">
-      <li><a href="index.html">Главная</a></li>
-      <li><a href="news.html">Новости</a></li>
-      <li><a href="guide.html" class="active">Гайды</a></li>
-      <li><a href="enchantments.html">Чары</a></li>
-      <li><a href="rules.html">Правила</a></li>
-      <li><a href="map.html">Карта</a></li>
-    </ul>
-  </div>
-  <a href="index.html">Главная</a>
-  <a href="news.html">Новости</a>
-  <a href="guide.html" class="active">Гайды</a>
-  <a href="enchantments.html">Чары</a>
-  <a href="rules.html">Правила</a>
-  <a href="map.html">Карта</a>
-</nav>
-<div class="content-wrapper">
-  <div class="main-content">
-    <h1>Гайд: Немного о модах</h1>
-    <div id="guide-container">Загрузка...</div>
-    <footer>
-      <p>© Любители приключений, 2025</p>
-    </footer>
-  </div>
-</div>
-<script src="guide.js" defer></script>
-</body>
-</html>
+const GUIDE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWOIDc927Y_8RTmRdb4zI4mo7Wt41jScd4Ys8IbQ6bfGF1HLZBZENbXFNV5Is_5PyrtyjEJ3TkcqIet/pub?output=csv';
+
+let guideData = [];
+let loadedGuideCount = 0;
+const LOAD_GUIDE_STEP = 10;
+
+async function loadGuides() {
+  const container = document.getElementById('guide-container');
+  container.textContent = 'Загрузка...';
+
+  try {
+    const url = GUIDE_CSV_URL + '&_=' + new Date().getTime();
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) throw new Error('Ошибка загрузки CSV');
+    const csvText = await response.text();
+
+    const parsed = Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true,
+    });
+
+    guideData = parsed.data.reverse();
+    loadedGuideCount = 0;
+    container.innerHTML = '';
+
+    if (guideData.length === 0) {
+      container.textContent = 'Гайдов пока нет.';
+      return;
+    }
+
+    loadMoreGuides();
+
+    window.addEventListener('scroll', onScrollLoadMoreGuide);
+
+  } catch (e) {
+    container.textContent = 'Не удалось загрузить гайды.';
+    console.error(e);
+  }
+}
+
+function loadMoreGuides() {
+  const container = document.getElementById('guide-container');
+  const nextItems = guideData.slice(loadedGuideCount, loadedGuideCount + LOAD_GUIDE_STEP);
+  nextItems.forEach(item => {
+    const guideItem = document.createElement('div');
+    guideItem.className = 'guide-item';
+
+    const titleEl = document.createElement('h3');
+    titleEl.textContent = item.title || item.Title || item.TITLE || 'Без названия';
+    guideItem.appendChild(titleEl);
+
+    const textEl = document.createElement('p');
+    let rawText = item.text || item.Text || item.TEXT || '';
+    rawText = rawText.replace(/\n{2,}/g, '\n');
+    textEl.innerHTML = rawText.replace(/\n/g, '<br>');
+    guideItem.appendChild(textEl);
+
+    container.appendChild(guideItem);
+  });
+  loadedGuideCount += nextItems.length;
+}
+
+function onScrollLoadMoreGuide() {
+  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
+    if (loadedGuideCount < guideData.length) {
+      loadMoreGuides();
+    } else {
+      window.removeEventListener('scroll', onScrollLoadMoreGuide);
+    }
+  }
+}
+
+if (document.getElementById('guide-container')) {
+  loadGuides();
+}

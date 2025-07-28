@@ -1,4 +1,5 @@
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSCuP7luNbTXwzyoU7OuAjF8rsyvKg22xYvXS6r2FTVwN0N3vfC0cI_oMsa9Xr0Z3Icdp8j8FQN4wj/pub?output=csv';
+
 let newsData = [];
 let loadedCount = 0;
 const LOAD_STEP = 10;
@@ -57,8 +58,7 @@ async function loadNews() {
 
     loadMoreNews();
 
-    // Делегирование клика по картинке для лупы
-    container.addEventListener('click', function(event) {
+    container.addEventListener('click', (event) => {
       if (event.target.tagName === 'IMG' && event.target.closest('.news-images-wrapper')) {
         openImageLightbox(event.target.src, event.target.alt);
       }
@@ -79,7 +79,6 @@ function loadMoreNews() {
     const newsItem = document.createElement('div');
     newsItem.className = 'news-item';
 
-    // Один гвоздик (левый верхний угол)
     const nailTL = document.createElement('span');
     nailTL.className = 'nail';
     newsItem.appendChild(nailTL);
@@ -87,7 +86,6 @@ function loadMoreNews() {
     const dateDiv = document.createElement('div');
     dateDiv.className = 'news-date';
     dateDiv.textContent = formatDate(item.date || item.Date || item.DATE);
-
     newsItem.appendChild(dateDiv);
 
     const imgUrlsRaw = item.image || item.img || item.IMAGE || '';
@@ -96,7 +94,6 @@ function loadMoreNews() {
     if (imgUrls.length > 0) {
       const imagesWrapper = document.createElement('div');
       imagesWrapper.className = 'news-images-wrapper';
-
       imgUrls.forEach(imgUrl => {
         const directUrl = convertDriveLinkToDirect(imgUrl);
         const img = document.createElement('img');
@@ -104,18 +101,16 @@ function loadMoreNews() {
         img.alt = 'Изображение новости';
         imagesWrapper.appendChild(img);
       });
-
       newsItem.appendChild(imagesWrapper);
     }
 
-    const textP = document.createElement('p');
-    textP.className = 'news-text';
-
     let rawText = item.text || item.Text || item.TEXT || '';
     rawText = rawText.replace(/\n{2,}/g, '\n');
+    const textP = document.createElement('p');
+    textP.className = 'news-text';
     textP.innerHTML = rawText.replace(/\n/g, '<br>');
-
     newsItem.appendChild(textP);
+
     container.appendChild(newsItem);
   });
   loadedCount += nextItems.length;
@@ -131,9 +126,8 @@ function onScrollLoadMore() {
   }
 }
 
-// Исправленная функция лупы с правильным центрированием
+// Лайтбокс
 function openImageLightbox(src, alt) {
-  // Удалить предыдущий лайтбокс, если он есть
   const oldOverlay = document.querySelector('.image-lightbox-overlay');
   if (oldOverlay) oldOverlay.remove();
 
@@ -147,20 +141,19 @@ function openImageLightbox(src, alt) {
   overlay.appendChild(img);
   document.body.appendChild(overlay);
 
-  // Центрирование и закрытие по клику вне картинки
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
       overlay.remove();
     }
   });
 
-  // Закрытие по клавише Escape
   function onKeyDown(e) {
     if (e.key === 'Escape') {
       overlay.remove();
       document.removeEventListener('keydown', onKeyDown);
     }
   }
+
   document.addEventListener('keydown', onKeyDown);
 }
 
