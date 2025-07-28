@@ -456,10 +456,10 @@ footer {
   }
 }
 
-/* Правила страницы */
+/* Правила страницы - обновлено для кружочков и ширины */
 .rules-main {
   padding: 32px 40px;
-  max-width: 900px;
+  max-width: 1125px; /* ~25% шире, было 900px */
   margin: 0 auto 80px auto;
   background: linear-gradient(120deg, rgba(30, 20, 10, 0.85) 80%, rgba(60, 30, 10, 0.9) 100%);
   border-radius: 20px;
@@ -470,116 +470,49 @@ footer {
   font-family: 'Georgia', serif;
 }
 
-.rules-main h1 {
-  font-size: 2.2em;
-  font-weight: bold;
-  color: #ffb84d;
-  text-shadow: 0 0 12px #ffb84d88;
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.rules-main .rules-intro {
-  font-size: 1.1em;
-  line-height: 1.5;
-  margin-bottom: 28px;
-  color: #f0e3bb;
-  text-align: center;
-  user-select: text;
-}
-
-.rules-section {
-  margin-bottom: 36px;
-  user-select: text;
-}
-
-.rules-section h2 {
-  font-size: 1.5em;
-  color: #ffb84d;
-  font-weight: bold;
-  margin-bottom: 16px;
-  text-shadow: 0 0 8px #ffb84d66;
-  border-bottom: 2px solid #ffb84d88;
-  padding-bottom: 6px;
-}
-
-.rules-list,
-.admin-list {
-  list-style: none;
-  padding-left: 20px;
-  color: #fff8d6;
-  font-size: 1.04em;
-  line-height: 1.6;
-  border-left: 4px solid #ffb84d;
-  margin-bottom: 0;
-}
-
-.rules-list li,
-.admin-list li {
-  margin-bottom: 12px;
-  padding-left: 12px;
-  position: relative;
-  user-select: text;
-}
-
-/* Красивые маркеры списков */
+/* Заменяем ромбики на кружочки */
+/* Убираем старые маркеры */
 .rules-list li::before,
 .admin-list li::before {
-  content: "♦";
+  content: "•";            /* кружок */
   color: #ffb84d;
+  font-size: 1.3em;
   position: absolute;
-  left: -20px;
-  font-size: 1.1em;
-  top: 3px;
+  left: -18px;             /* чуть ближе к тексту чем было */
+  top: 0.12em;             /* выровнять по вертикали */
+  line-height: 1;
 }
 
-/* Выделение важных слов */
-.rules-list strong,
-.admin-list strong {
-  color: #ffd974;
-  font-weight: 600;
-}
-
-/* Кодовые и специальные элементы */
-.rules-list code {
-  background: #4e2a0a;
-  color: #ffb84d;
-  padding: 2px 6px;
-  border-radius: 6px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.95em;
+/* Отступ для содержимого li, чтобы место оставить для кружка */
+.rules-list li,
+.admin-list li {
+  padding-left: 22px;  /* чуть меньше, чтобы кружок ближе */
+  position: relative;
+  margin-bottom: 12px;
   user-select: text;
 }
 
-/* Ссылки внутри текста */
-.rules-list a,
-.admin-list a {
-  color: #ffb84d;
-  text-decoration: underline;
-  transition: color 0.3s ease;
-}
-.rules-list a:hover,
-.admin-list a:hover,
-.rules-list a:focus,
-.admin-list a:focus {
-  color: #ff8c00;
-  outline: none;
+/* Фиксированный футер внизу экрана */
+footer {
+  position: fixed !important;
+  bottom: 0;
+  left: 170px; /* под ширину навигации */
+  right: 0;
+  height: 56px;
+  line-height: 56px;
+  text-align: center;
+  color: #d9c9a3;
+  text-shadow: 0 0 3px #ffb84d;
+  font-size: 0.9em;
+  background: rgba(30, 20, 10, 0.9);
+  box-sizing: border-box;
+  user-select: none;
+  z-index: 1500;
 }
 
-/* Адаптация под мобильные */
-@media (max-width: 700px) {
-  .rules-main {
-    padding: 24px 20px;
-    margin-bottom: 60px;
-  }
-  .rules-main h1 {
-    font-size: 1.8em;
-  }
-  .rules-section h2 {
-    font-size: 1.3em;
-  }
-  .rules-list li,
-  .admin-list li {
-    font-size: 1em;
+/* Адаптив для футера */
+@media (max-width: 900px) {
+  footer {
+    left: 0;
   }
 }
