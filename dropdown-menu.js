@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Закрытие меню при клике вне
     document.addEventListener('click', () => {
       toggleMenu(false);
     });

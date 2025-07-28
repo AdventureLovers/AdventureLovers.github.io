@@ -91,23 +91,24 @@ nav.top-nav {
   position: relative;
   display: inline-block;
   cursor: pointer;
+  z-index: 1100;
 }
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 8px);
   left: 50%;
-  transform: translateX(-50%) translateY(-8px);
-  background: transparent; /* прозрачный фон нет */
+  transform: translateX(-50%) translateY(-10px);
+  background: transparent; /* без фона */
   list-style: none;
-  padding: 4px 0;
+  padding: 0;
   margin: 0;
   min-width: 160px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease;
-  z-index: 1000;
+  z-index: 10000;
 }
 
 .dropdown-menu.show {
@@ -118,14 +119,17 @@ nav.top-nav {
 }
 
 .dropdown-menu li {
-  margin: 0;
+  margin: 0 0 15px 0;
   padding: 0;
+}
+
+.dropdown-menu li:last-child {
+  margin-bottom: 0;
 }
 
 .dropdown-menu li a {
   display: block;
   padding: 13px 22px;
-  margin-bottom: 15px;
   font-weight: bold;
   border-radius: 10px;
   text-decoration: none;
@@ -134,8 +138,7 @@ nav.top-nav {
   box-shadow: 0 2px 12px 0 rgba(255, 184, 77, 0.12);
   transition: background 0.25s, color 0.25s, transform 0.13s, box-shadow 0.18s;
   cursor: pointer;
-  width: 96%;
-  max-width: 160px;
+  width: 160px;
   box-sizing: border-box;
   text-align: center;
   font-size: 1.08em;
@@ -143,15 +146,7 @@ nav.top-nav {
   filter: drop-shadow(0 0 3px #ffb84d33);
   outline: none;
   border: none;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: visible;
-  text-overflow: unset;
   font-family: 'Georgia', serif;
-}
-
-.dropdown-menu li a:last-child {
-  margin-bottom: 0;
 }
 
 .dropdown-menu li a:hover,
@@ -164,54 +159,52 @@ nav.top-nav {
   text-decoration: none;
 }
 
-/* --- Контент --- */
+/* --- Контент основной --- */
 .content-wrapper {
   margin-left: 200px;
-  padding: 20px;
+  padding: 0;
   max-width: calc(100vw - 200px);
   min-height: 100vh;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  /* устанавливаем выравнивание вертикально */
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* --- Новый горизонтальный макет для главной */
-.horizontal-split {
+/* --- Горизонтальное расположение центральной части --- */
+.horizontal-layout {
+  width: 100%;
   display: flex;
-  height: calc(100vh - 56px); /* высота минус футер */
   gap: 16px;
-  padding: 20px;
+  padding: 20px 24px;
   box-sizing: border-box;
-  background: linear-gradient(135deg, #2c1a0f 0%, #4e2a0a 100%);
 }
 
-/* Большой блок с фоновой картинкой и текстом (левый) */
-.main-content-bgimg-container {
-  flex: 1.5 1 0;
-  display: flex;
-}
-
-.main-content-bgimg {
+/* Большой блок центральной части с фоном и текстом */
+.main-bg-text {
+  flex: 3 1 0;
   position: relative;
-  flex: 1 1 100%;
-  background:
-    linear-gradient(120deg, rgba(30, 20, 10, 0.72) 70%, rgba(60, 30, 10, 0.78) 100%),
-    url('news-images/2025-04-08_15.36.40.png') center center / cover no-repeat;
+  /* Чтобы текст был внутри - overflow и border-radius */
   border-radius: 16px;
   box-shadow: 0 6px 40px 0 rgba(255, 140, 0, 0.15), 0 1.5px 0 #ffb84d inset;
   overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(30, 20, 10, 0.72) 70%, rgba(60, 30, 10, 0.78) 100%),
+    url('news-images/2025-04-08_15.36.40.png') center center / cover no-repeat;
   color: #f5e6c4;
+  display: flex;
+  align-items: center;
 }
 
+/* Обертка для текста, с ограниченной шириной */
 .main-content-overlay {
-  position: relative;
-  z-index: 2;
   padding: 36px 48px 32px 48px;
   max-width: 600px;
   font-size: 1.02em;
   overflow-y: auto;
-  user-select: text;
   box-sizing: border-box;
+  user-select: text;
 }
 
 .main-content-overlay h1 {
@@ -230,33 +223,61 @@ nav.top-nav {
   line-height: 1.45;
 }
 
-/* Правый вертикальный блок на 3 части */
-.right-vertical-block {
+.server-ip-row {
+  margin-top: 18px;
+  font-size: 1.08em;
+  font-weight: bold;
+  color: #ffb84d;
+  background: #3e2a13cc;
+  border-radius: 8px;
+  padding: 8px 18px;
+  display: inline-block;
+  box-shadow: 0 0 8px #ffb84d66;
+  border: 2px solid #ffb84d;
+  width: fit-content;
+  user-select: text;
+}
+
+.server-ip-label {
+  color: #ffb84d;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.03em;
+  margin-right: 8px;
+}
+
+.server-ip-value {
+  color: #fffbe2;
+  font-weight: bold;
+  font-size: 1.12em;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 8px #ffb84d77;
+}
+
+/* Правая вертикальная колонка справа */
+.right-block-vertical {
   flex: 1 1 0;
   background: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
   border-radius: 16px;
-  box-shadow: 0 4px 20px 0 rgba(255, 184, 77, 0.11),
-    0 0 0 2px #1b1408 inset;
-  padding: 24px 28px;
+  box-shadow: 0 4px 20px 0 rgba(255, 184, 77, 0.11), 0 0 0 2px #1b1408 inset;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  padding: 20px 24px;
   color: #f5e6c4;
   overflow-y: auto;
   box-sizing: border-box;
+  min-height: 0; /* для flex контейнера при ограниченной высоте */
 }
 
-/* Каждая секция по высоте примерно равна */
-.top-third,
-.middle-third,
-.bottom-third {
+/* Каждая из трех секций в правом блоке занимает равную часть */
+.right-block-vertical section {
   flex: 1 1 0;
   overflow-y: auto;
 }
 
-.top-third h2,
-.middle-third h2,
-.bottom-third h2 {
+/* Заголовки секций */
+.right-block-vertical h2 {
   color: #ffb84d;
   font-weight: bold;
   margin-bottom: 12px;
@@ -264,13 +285,14 @@ nav.top-nav {
   font-family: 'Georgia', serif;
 }
 
-.event-block p {
+/* Стили контента события */
+.event-section p {
   font-size: 1em;
   margin-bottom: 12px;
   line-height: 1.4em;
 }
 
-.event-block img {
+.event-section img {
   max-width: 100%;
   border-radius: 12px;
   box-shadow: 0 0 20px #ffb84daa;
@@ -280,56 +302,54 @@ nav.top-nav {
   pointer-events: none;
 }
 
-.contact-admin ul {
+/* Контакты администрации */
+.contact-section ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.contact-admin ul li {
+.contact-section ul li {
   margin-bottom: 0.6em;
   user-select: text;
 }
 
-.contact-admin ul li a {
+.contact-section ul li a {
   color: #ffb84d;
   text-decoration: underline;
   transition: color 0.25s;
 }
 
-.contact-admin ul li a:hover,
-.contact-admin ul li a:focus {
+.contact-section ul li a:hover,
+.contact-section ul li a:focus {
   color: #ff8c00;
   outline: none;
 }
 
-/* Стиль iframe Discord */
-.discord-widget iframe {
+/* Discord виджет */
+.discord-section iframe {
+  width: 100%;
+  height: 100%;
   border-radius: 12px;
   border: none;
   box-shadow: 0 0 20px #ffb84daa;
-  width: 100%;
-  height: 100%;
   user-select: none;
 }
 
-/* Мини скроллбар для правого блока */
-.right-vertical-block::-webkit-scrollbar {
+/* Скроллбар для правой колонки */
+.right-block-vertical::-webkit-scrollbar {
   width: 8px;
 }
-
-.right-vertical-block::-webkit-scrollbar-thumb {
+.right-block-vertical::-webkit-scrollbar-thumb {
   background: #ffb84d88;
   border-radius: 6px;
 }
-
-.right-vertical-block::-webkit-scrollbar-track {
+.right-block-vertical::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* --- Навигация слева в основном меню (по цветам и стилями как на сайте) --- */
-.side-menu a {
-  display: block;
+/* --- Навигация слева (оставлена как в оригинале) --- */
+nav.side-nav a {
   padding: 13px 22px;
   margin-bottom: 15px;
   font-weight: bold;
@@ -356,13 +376,13 @@ nav.top-nav {
   font-family: 'Georgia', serif;
 }
 
-.side-menu a:last-child {
+nav.side-nav a:last-child {
   margin-bottom: 0;
 }
 
-.side-menu a:hover,
-.side-menu a:focus,
-.side-menu a.active {
+nav.side-nav a:hover,
+nav.side-nav a:focus,
+nav.side-nav a.active {
   background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
   color: #3e2a13;
   transform: scale(1.03);
@@ -370,7 +390,7 @@ nav.top-nav {
   text-decoration: none;
 }
 
-/* --- Верхнее меню на мобильных --- */
+/* --- Верхнее меню на мобильных (оставлено для адаптивности) --- */
 @media (max-width: 900px) {
   nav.side-nav {
     display: none;
@@ -450,6 +470,7 @@ nav.top-nav {
     margin-left: 0;
     max-width: 100vw;
     padding: 10px 2vw 10px 2vw;
+    height: auto;
   }
 }
 
@@ -469,6 +490,4 @@ nav.top-nav {
   }
 }
 
-/* --- Остальные стили из оригинального style.css для новостей, правил и т.д. можно оставить прежними --- */
-
-/* остальные ваши стили, если есть, рекомендуется вставлять ниже, без дублирования */
+/* Прочие стили для новостей, правил и т.д. остаются без изменений */
