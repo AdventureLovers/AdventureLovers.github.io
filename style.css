@@ -1,7 +1,12 @@
+/* Глобальные сбросы */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Основные стили */
 html {
   height: 100%;
   min-height: 100%;
-  box-sizing: border-box;
   scrollbar-width: thin;
   scrollbar-color: #ffb84d #3e2a13;
 }
@@ -36,25 +41,25 @@ body {
   box-shadow: inset 0 0 60px #1e1107;
 }
 
-/* --- Левая панель - сайдбар (уменьшена до 120px) --- */
+/* Левая панель - сайдбар, ширина 120px (уменьшена) */
 nav.side-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: #4e2a0a;
+  width: 120px;
   padding: 15px 0;
   border-radius: 0 10px 10px 0;
-  width: 120px;
   box-shadow: 1px 0 15px 0 rgba(255, 140, 0, 0.18);
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  flex-shrink: 0;
   z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
+/* Логотип уменьшен в размере */
 .logo-wrapper {
   width: 65%;
   margin: 0 auto 25px auto;
@@ -84,7 +89,7 @@ nav.side-nav {
   outline: none;
 }
 
-/* --- Выпадающее меню из иконки (без фона, плавно появляется и исчезает) --- */
+/* Выпадающее меню (под иконкой) без фона, без теней, только кнопки */
 .dropdown-wrapper {
   position: relative;
   display: inline-block;
@@ -96,19 +101,21 @@ nav.side-nav {
   top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%) translateY(-10px);
+
   background: transparent !important;
   box-shadow: none !important;
+
   list-style: none;
   padding: 0;
   margin: 0;
-  min-width: 140px;
-  
+  min-width: 120px;
+
   max-height: 0;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   overflow: hidden;
-  
+
   transition:
     max-height 0.35s ease,
     opacity 0.35s ease,
@@ -145,8 +152,8 @@ nav.side-nav {
   font-size: 1em;
   cursor: pointer;
   user-select: none;
-  margin: 0;
   transition: color 0.3s ease;
+  margin: 0;
 }
 
 .dropdown-menu li a:hover,
@@ -160,7 +167,7 @@ nav.side-nav {
   box-shadow: none !important;
 }
 
-/* --- Основной контент с учётом ширины сайдбара 120px --- */
+/* Основной контент: смещён под сайдбар 120px */
 .content-wrapper {
   margin-left: 120px;
   max-width: calc(100vw - 120px);
@@ -183,8 +190,8 @@ nav.side-nav {
 
 /* Центральный блок с фоном и текстом */
 .main-bg-text {
-  flex: 3 1 0;
-  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
   border-radius: 16px;
   box-shadow: 0 6px 40px 0 rgba(255, 140, 0, 0.15), 0 1.5px 0 #ffb84d inset;
   overflow: hidden;
@@ -197,7 +204,7 @@ nav.side-nav {
   user-select: text;
 }
 
-/* Обертка для текста */
+/* Обертка для текста внутри центрального блока */
 .main-content-overlay {
   padding: 36px 48px 32px 48px;
   max-width: 720px;
@@ -253,9 +260,11 @@ nav.side-nav {
   text-shadow: 0 0 8px #ffb84d77;
 }
 
-/* Правая колонка - уменьшенная на 15% ширина, примерно 1.5 к 3 */
+/* Правая колонка - фиксированная ширина 290px (меньше на 15%) */
 .right-block-vertical {
-  flex: 1.5 1 0;
+  width: 290px;
+  min-width: 290px;
+  max-width: 290px;
   background:
     linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%),
     url('news-images/2025-04-08_15.36.40.png') center center / cover no-repeat;
@@ -270,9 +279,10 @@ nav.side-nav {
   box-sizing: border-box;
   overflow: hidden;
   user-select: text;
+  flex-shrink: 0;
 }
 
-/* Три равных вертикальных блока */
+/* Три вертикальные равные секции правой колонки */
 .right-block-vertical section {
   flex: 1 1 0;
   display: flex;
@@ -282,7 +292,7 @@ nav.side-nav {
   overflow: hidden;
 }
 
-/* Заголовки правой колонки */
+/* Заголовки правая колонка */
 .right-block-vertical h2 {
   color: #ffb84d;
   font-weight: bold;
@@ -293,7 +303,7 @@ nav.side-nav {
   user-select: text;
 }
 
-/* Кнопка Текущее событие */
+/* Кнопка 'Починка сайта!' */
 .event-button {
   background: linear-gradient(90deg, #3e2a13 60%, #4e2a0a 100%);
   color: #ffb84d;
@@ -311,6 +321,7 @@ nav.side-nav {
   width: fit-content;
   max-width: 100%;
   text-align: center;
+  white-space: nowrap;
 }
 
 .event-button:hover,
@@ -321,7 +332,7 @@ nav.side-nav {
   outline: none;
 }
 
-/* Контакты администрация */
+/* Контакты администрации */
 .contact-section ul {
   list-style: none;
   padding-left: 0;
@@ -357,7 +368,7 @@ nav.side-nav {
   user-select: none;
 }
 
-/* --- Навигация левой панели (стиль кнопок) --- */
+/* Левая навигация - ссылки */
 nav.side-nav a {
   width: 100%;
   max-width: 100%;
@@ -400,7 +411,69 @@ nav.side-nav a.active {
   text-decoration: none;
 }
 
-/* --- Стандартная адаптивность --- */
+/* Модальное окно */
+
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 20, 10, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20000;
+  padding: 20px;
+  user-select: text;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-content {
+  background: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
+  border-radius: 16px;
+  padding: 30px 40px;
+  box-shadow: 0 0 40px 5px #ffb84d77;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: #f5e6c4;
+  font-family: 'Georgia', serif;
+  position: relative;
+}
+
+.modal-content h2 {
+  color: #ffb84d;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 2em;
+  color: #ffb84d;
+  background: none;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: #ff8c00;
+  outline: none;
+}
+
+/* Мобильная адаптивность */
 @media (max-width: 900px) {
   nav.side-nav {
     display: none;
@@ -497,75 +570,5 @@ nav.side-nav a.active {
   }
   .content-wrapper {
     padding: 6px 1vw 6px 1vw;
-  }
-}
-
-/* --- Модальное окно --- */
-.modal {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(30, 20, 10, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 20000;
-  padding: 20px;
-  user-select: text;
-}
-
-.modal[hidden] {
-  display: none;
-}
-
-.modal-content {
-  background: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
-  border-radius: 16px;
-  padding: 30px 40px;
-  box-shadow: 0 0 40px 5px #ffb84d77;
-  max-width: 600px;
-  max-height: 80vh;
-  overflow-y: auto;
-  color: #f5e6c4;
-  font-family: 'Georgia', serif;
-  position: relative;
-}
-
-.modal-content h2 {
-  color: #ffb84d;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.modal-content p {
-  line-height: 1.5;
-  margin: 0;
-  white-space: pre-line;
-}
-
-.modal-close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 2em;
-  color: #ffb84d;
-  background: none;
-  border: none;
-  cursor: pointer;
-  user-select: none;
-  transition: color 0.3s;
-}
-
-.modal-close:hover,
-.modal-close:focus {
-  color: #ff8c00;
-  outline: none;
-}
-
-/* Для адаптивности модалки */
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 20px;
-    max-width: 90vw;
-    max-height: 75vh;
   }
 }
