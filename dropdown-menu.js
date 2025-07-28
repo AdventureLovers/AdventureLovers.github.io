@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
       isAnimating = true;
       menu.classList.add('show');
       toggle.setAttribute('aria-expanded', 'true');
-      // Wait for animation to end
       setTimeout(() => { isAnimating = false; }, 350);
     }
 
@@ -56,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Модальное окно для события
   if (eventButton && eventModal && modalCloseBtn) {
     function openModal() {
       eventModal.hidden = false;
