@@ -645,3 +645,143 @@ ul:not(.admin-block ul) li::before {
     max-height: 55vw;
   }
 }
+
+/* --- Выпадающее меню из иконки --- */
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4e2a0a;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(255, 184, 77, 0.18);
+  margin-top: 8px;
+  padding: 0;
+  list-style: none;
+  min-width: 160px;
+  display: none;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 12px 20px;
+  font-weight: bold;
+  color: #ffb84d;
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s;
+  font-family: 'Georgia', serif;
+  font-size: 1em;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus,
+.dropdown-menu li a.active {
+  background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
+  color: #3e2a13;
+  outline: none;
+}
+
+/* --- Макет главной страницы с тремя блоками --- */
+.three-columns {
+  display: flex;
+  height: calc(100vh - 64px); /* высота минус футер если нужно */
+  gap: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left-block, .right-block {
+  flex: 1 1 0;
+  background: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px 0 rgba(255, 184, 77, 0.11), 0 0 0 2px #1b1408 inset;
+  padding: 20px 24px;
+  color: #f5e6c4;
+  overflow-y: auto;
+}
+
+.side-menu a {
+  display: block;
+  padding: 12px 18px;
+  color: #ffb84d;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  font-size: 1.1em;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s;
+}
+
+.side-menu a.active,
+.side-menu a:hover,
+.side-menu a:focus {
+  background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
+  color: #3e2a13;
+}
+
+.right-block section {
+  margin-bottom: 24px;
+}
+
+.right-block section h2 {
+  color: #ffb84d;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px #ffb84d44;
+  font-family: 'Georgia', serif;
+}
+
+.event-block p {
+  font-size: 1em;
+  margin-bottom: 12px;
+  line-height: 1.4em;
+}
+
+/* Три равных блока по высоте */
+.top-third, .middle-third, .bottom-third {
+  height: calc((100% - 48px) / 3); /* Три блока с отступами */
+  overflow-y: auto;
+}
+
+/* Управление отображением scrollbar для правого блока (если понадобится) */
+.right-block::-webkit-scrollbar {
+  width: 8px;
+}
+.right-block::-webkit-scrollbar-thumb {
+  background: #ffb84d88;
+  border-radius: 6px;
+}
+.right-block::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Для мобильных экранов - вертикальный макет */
+@media (max-width: 900px) {
+  .three-columns {
+    flex-direction: column;
+    height: auto;
+  }
+  .left-block, .right-block {
+    height: auto;
+  }
+  .right-block section {
+    height: auto !important;
+    margin-bottom: 20px;
+  }
+}

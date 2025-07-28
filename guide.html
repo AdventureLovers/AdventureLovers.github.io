@@ -6,27 +6,21 @@
   <title>Гайд — Немного о модах</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="icon.png" type="image/png" />
+  <script defer src="dropdown-menu.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
 <nav class="side-nav">
-  <div class="logo-wrapper">
-    <img src="icon.png" alt="Иконка сервера" class="server-icon" />
-  </div>
-  <a href="index.html">Главная</a>
-  <a href="news.html">Новости</a>
-  <a href="guide.html" class="active">Гайд</a>
-  <a href="rules.html">Правила</a>
-</nav>
-<nav class="top-nav">
-  <div class="logo-wrapper">
-    <img src="icon.png" alt="Иконка сервера" class="server-icon" />
-  </div>
-  <div class="top-nav-scroll">
-    <a href="index.html">Главная</a>
-    <a href="news.html">Новости</a>
-    <a href="guide.html"  class="active">Гайд</a>
-    <a href="rules.html">Правила</a>
+  <div class="logo-wrapper dropdown-wrapper">
+    <img src="icon.png" alt="Иконка сервера" class="server-icon dropdown-toggle" tabindex="0" aria-haspopup="true" aria-expanded="false" />
+    <ul class="dropdown-menu" aria-label="Основная навигация">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="news.html">Новости</a></li>
+      <li><a href="guide.html" class="active">Гайды</a></li>
+      <li><a href="enchantments.html">Зачарования</a></li>
+      <li><a href="rules.html">Правила</a></li>
+      <li><a href="map.html">Карта</a></li>
+    </ul>
   </div>
 </nav>
   <div class="content-wrapper">
@@ -38,6 +32,6 @@
       </footer>
     </div>
   </div>
-  <script src="guide.js"></script>
+  <script src="guide.js" defer></script>
 </body>
 </html>
