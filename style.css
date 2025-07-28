@@ -19,7 +19,7 @@ html, body {
 
 /* ------------ Цветовые переменные для фона и акцентов ------------ */
 :root {
-  --color-dark: #251607;  /* чуть темнее предыдущего */
+  --color-dark: #251607;  /* темнее */
   --color-mid: #332008;
   --color-light: #432b0b;
   --color-accent: #ffb84d;
@@ -233,7 +233,7 @@ nav.side-nav {
   background-repeat: repeat;
 }
 
-/* Разделитель между левым меню и центром */
+/* Разделитель между левым меню и центром (фиксирован) */
 .content-wrapper::before {
   content: "";
   position: fixed;
@@ -263,7 +263,7 @@ nav.side-nav {
   user-select: none;
 }
 
-/* Центральный блок (главная) — прозрачный фон, чтобы видно был общий фон и с подложкой для фона-картинки */
+/* Центральный блок (главная) — прозрачный фон */
 .main-bg-text {
   flex: 1 1 auto;
   border-radius: 16px;
@@ -277,38 +277,37 @@ nav.side-nav {
   position: relative;
 }
 
-/* Добавляем затемнённую подложку поверх фонового изображения для улучшения читаемости текста */
+/* Здесь фон-картинка в блоке .main-content-bgimg, который занимает всю площадь главного блока */
 .main-content-bgimg {
-  position: relative;
-  flex: 1;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   background: url('news-images/2025-04-08_15.36.40.png') center center / cover no-repeat;
   border-radius: 16px;
   overflow: hidden;
+  z-index: 0;
 }
 
+/* Полупрозрачный затемняющий слой поверх фонового изображения для лучшей читаемости */
+.main-content-bgimg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 16px;
+  z-index: 1;
+}
+
+/* Контент поверх фонового изображения */
 .main-content-overlay {
   position: relative;
   z-index: 2;
-  padding: 36px 0 32px 0;
   width: 100%;
   max-width: none;
   font-size: 1.02em;
   box-sizing: border-box;
   flex-grow: 1;
-  color: var(--color-text-light);
   user-select: text;
-}
-
-/* Тёмная полупрозрачная подложка поверх фонового изображения */
-.main-content-bgimg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55); /* чёрная прозрачная подложка 55% */
-  z-index: 1;
-  border-radius: 16px;
+  color: var(--color-text-light);
 }
 
 .main-bg-text h1 {
@@ -327,7 +326,6 @@ nav.side-nav {
   line-height: 1.45;
 }
 
-/* IP сервера */
 .server-ip-row {
   margin-top: auto;
   font-weight: bold;
