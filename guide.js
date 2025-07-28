@@ -1,3 +1,5 @@
+// guide.js - используется на guide.html
+
 const GUIDE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWOIDc927Y_8RTmRdb4zI4mo7Wt41jScd4Ys8IbQ6bfGF1HLZBZENbXFNV5Is_5PyrtyjEJ3TkcqIet/pub?output=csv';
 
 let guideData = [];

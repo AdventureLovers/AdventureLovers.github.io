@@ -11,7 +11,7 @@ html, body {
   font-size: 1.09em;
   background: linear-gradient(135deg, #2c1a0f 0%, #4e2a0a 100%, #2c1a0f 100%);
   color: #f5e6c4;
-  overflow: hidden;
+  overflow-y: auto; /* Разрешаем прокрутку */
 }
 
 /* Левая панель навигации */
@@ -60,45 +60,6 @@ nav.side-nav {
 .server-icon:focus {
   box-shadow: 0 0 40px 8px #ffb84d88;
   outline: none;
-}
-
-/* Меню ссылок */
-nav.side-nav a {
-  display: block;
-  width: 92%;
-  max-width: 160px;
-  padding: 14px 22px;
-  margin-bottom: 15px;
-  font-weight: bold;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #ffb84d;
-  background: linear-gradient(90deg, #3e2a13 60%, #4e2a0a 100%);
-  box-shadow: 0 2px 12px 0 rgba(255, 184, 77, 0.12);
-  transition: background 0.25s, color 0.25s, transform 0.13s, box-shadow 0.18s;
-  cursor: pointer;
-  box-sizing: border-box;
-  text-align: center;
-  font-size: 1.1em;
-  letter-spacing: 0.03em;
-  filter: drop-shadow(0 0 4px #ffb84d44);
-  outline: none;
-  border: none;
-  white-space: nowrap;
-}
-
-nav.side-nav a:last-child {
-  margin-bottom: 0;
-}
-
-nav.side-nav a:hover,
-nav.side-nav a:focus,
-nav.side-nav a.active {
-  background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
-  color: #3e2a13;
-  transform: scale(1.04);
-  box-shadow: 0 6px 24px 4px #ffb84d55;
-  text-decoration: none;
 }
 
 /* Выпадающее меню (под иконкой) */
@@ -185,8 +146,8 @@ nav.side-nav a.active {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
+  height: auto;
+  overflow-y: auto; /* Разрешаем прокрутку */
   padding: 0;
 }
 
