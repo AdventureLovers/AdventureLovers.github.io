@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!toggle || !menu) return;
 
-    // Управление aria-атрибутами и классами для видимости
     function toggleMenu(show) {
       const isOpen = menu.classList.contains('show');
       if (show === undefined) show = !isOpen;
@@ -20,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       toggleMenu();
     });
 
-    // Клавиши: Enter, Space для открытия меню
     toggle.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -35,13 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Закрывать меню при клике вне
-    document.addEventListener('click', (e) => {
-      if (!wrapper.contains(e.target)) {
-        toggleMenu(false);
-      }
+    // Закрытие меню при клике вне
+    document.addEventListener('click', () => {
+      toggleMenu(false);
     });
-
-    // Управление клавишами навигации для меню (TAB происходит естественно)
   });
 });
