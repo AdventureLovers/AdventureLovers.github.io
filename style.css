@@ -1,3 +1,4 @@
+/* Сбросы и базовые стили */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -13,10 +14,10 @@ html, body {
   overflow: hidden;
 }
 
-/* Левая панель */
+/* Левая панель навигации */
 nav.side-nav {
-  width: 120px;
-  padding: 15px 0;
+  width: 140px; /* чуть шире, чтобы кнопки помещались */
+  padding: 20px 0;
   border-radius: 0 10px 10px 0;
   box-shadow: 1px 0 15px 0 rgba(255, 140, 0, 0.18);
   height: 100vh;
@@ -24,7 +25,6 @@ nav.side-nav {
   top: 0;
   left: 0;
   z-index: 1000;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,8 +33,8 @@ nav.side-nav {
 }
 
 .logo-wrapper {
-  width: 65%;
-  margin: 0 auto 25px auto;
+  width: 75%;
+  margin: 0 auto 30px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,16 +58,16 @@ nav.side-nav {
 .server-icon.active,
 .server-icon:hover,
 .server-icon:focus {
-  box-shadow: 0 0 30px 6px #ffb84d88;
+  box-shadow: 0 0 40px 8px #ffb84d88;
   outline: none;
 }
 
-/* Ссылки меню */
+/* Меню ссылок */
 nav.side-nav a {
   display: block;
-  width: 96%;
+  width: 92%;
   max-width: 160px;
-  padding: 13px 22px;
+  padding: 14px 22px;
   margin-bottom: 15px;
   font-weight: bold;
   border-radius: 10px;
@@ -79,9 +79,9 @@ nav.side-nav a {
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
-  font-size: 1.08em;
+  font-size: 1.1em;
   letter-spacing: 0.03em;
-  filter: drop-shadow(0 0 3px #ffb84d33);
+  filter: drop-shadow(0 0 4px #ffb84d44);
   outline: none;
   border: none;
   white-space: nowrap;
@@ -96,12 +96,12 @@ nav.side-nav a:focus,
 nav.side-nav a.active {
   background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
   color: #3e2a13;
-  transform: scale(1.03);
-  box-shadow: 0 4px 18px 2px #ffb84d55;
+  transform: scale(1.04);
+  box-shadow: 0 6px 24px 4px #ffb84d55;
   text-decoration: none;
 }
 
-/* Выпадающее меню */
+/* Выпадающее меню (под иконкой) */
 .dropdown-wrapper {
   position: relative;
   display: inline-block;
@@ -110,7 +110,7 @@ nav.side-nav a.active {
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%) translateY(-10px);
   background: transparent;
@@ -179,8 +179,8 @@ nav.side-nav a.active {
 
 /* Основной контент */
 .content-wrapper {
-  margin-left: 120px;
-  max-width: calc(100vw - 120px);
+  margin-left: 140px;
+  max-width: calc(100vw - 140px);
   min-height: 100vh;
   box-sizing: border-box;
   display: flex;
@@ -190,7 +190,7 @@ nav.side-nav a.active {
   padding: 0;
 }
 
-/* Горизонтальное расположение центральной части и правого блока */
+/* Горизонтальное расположение центральной части и правой колонки */
 .horizontal-layout {
   width: 100%;
   flex: 1 1 auto;
@@ -201,7 +201,7 @@ nav.side-nav a.active {
   overflow: hidden;
 }
 
-/* Центральный блок с фоном и текстом */
+/* Центральный блок */
 .main-bg-text {
   flex: 1 1 auto;
   min-width: 0;
@@ -217,7 +217,6 @@ nav.side-nav a.active {
   user-select: text;
 }
 
-/* Текстовый оверлей */
 .main-content-overlay {
   padding: 36px 48px 32px 48px;
   width: 100%;
@@ -276,9 +275,9 @@ nav.side-nav a.active {
 
 /* Правая колонка */
 .right-block-vertical {
-  width: 290px;
-  min-width: 290px;
-  max-width: 290px;
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
   background:
     linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%),
     url('news-images/2025-04-08_15.36.40.png') center center / cover no-repeat;
@@ -312,7 +311,7 @@ nav.side-nav a.active {
   border-bottom: none;
 }
 
-/* Верхние две секции - минимальны по высоте и прижаты друг к другу */
+/* Верхние две секции - минимальная высота */
 .right-block-vertical .event-section,
 .right-block-vertical .contact-section {
   height: auto;
@@ -324,7 +323,7 @@ nav.side-nav a.active {
   min-height: 0;
 }
 
-/* Заголовки правой колонки */
+/* Заголовки */
 .right-block-vertical h2 {
   margin-bottom: 12px;
   color: #ffb84d;
@@ -335,7 +334,7 @@ nav.side-nav a.active {
   user-select: text;
 }
 
-/* Кнопка "Починка сайта!" */
+/* Кнопка события */
 .event-button {
   background: linear-gradient(90deg, #3e2a13 60%, #4e2a0a 100%);
   color: #ffb84d;
@@ -390,7 +389,7 @@ nav.side-nav a.active {
   outline: none;
 }
 
-/* Виджет Discord */
+/* Discord */
 .discord-section iframe {
   width: 100%;
   height: 100%;
@@ -406,7 +405,7 @@ footer {
   line-height: 56px;
   position: fixed;
   bottom: 0;
-  left: 120px;
+  left: 140px;
   right: 0;
   text-align: center;
   color: #d9c9a3;

@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Модовый сервер Minecraft</title>
-<link rel="stylesheet" href="style.css" />
-<link rel="icon" href="icon.png" type="image/png" />
-<script defer src="dropdown-menu.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Модовый сервер Minecraft</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="icon.png" type="image/png" />
+  <script defer src="dropdown-menu.js"></script>
 </head>
 <body>
 
-<nav class="side-nav">
+<nav class="side-nav" role="navigation" aria-label="Основная навигация">
   <div class="logo-wrapper dropdown-wrapper">
-    <img src="icon.png" alt="Иконка сервера" 
-         class="server-icon dropdown-toggle" 
-         tabindex="0" aria-haspopup="true" aria-expanded="false" />
-    <ul class="dropdown-menu" aria-label="Основная навигация" role="menu">
+    <img src="icon.png" alt="Иконка сервера" class="server-icon dropdown-toggle" tabindex="0" aria-haspopup="true" aria-expanded="false" />
+    <ul class="dropdown-menu" role="menu" aria-label="Выпадающее меню">
       <li><a href="index.html" class="active" role="menuitem">Главная</a></li>
       <li><a href="news.html" role="menuitem">Новости</a></li>
       <li><a href="guide.html" role="menuitem">Гайды</a></li>
@@ -25,7 +23,7 @@
     </ul>
   </div>
 
-  <!-- Меню кнопок под иконкой всегда -->
+  <!-- Меню кнопок всегда видно -->
   <a href="index.html" class="active">Главная</a>
   <a href="news.html">Новости</a>
   <a href="guide.html">Гайды</a>
@@ -73,9 +71,7 @@
 
     <section class="discord-section">
       <h2>Discord сервер</h2>
-      <iframe src="https://discord.com/widget?id=YOUR_DISCORD_SERVER_ID&theme=dark" 
-      allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" 
-      title="Discord сервер" loading="lazy"></iframe>
+      <iframe src="https://discord.com/widget?id=YOUR_DISCORD_SERVER_ID&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" title="Discord сервер" loading="lazy"></iframe>
     </section>
 
   </aside>

@@ -114,7 +114,7 @@ function loadMoreNews() {
 }
 
 function onScrollLoadMore() {
-  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
+  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 200)) {
     if (loadedCount < newsData.length) {
       loadMoreNews();
     } else {
@@ -123,7 +123,7 @@ function onScrollLoadMore() {
   }
 }
 
-// Лайтбокс
+// Лайтбокс для увеличения картинки
 function openImageLightbox(src, alt) {
   const oldOverlay = document.querySelector('.image-lightbox-overlay');
   if (oldOverlay) oldOverlay.remove();
