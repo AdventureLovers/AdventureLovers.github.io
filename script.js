@@ -50,12 +50,10 @@ async function loadNews() {
     newsData = parsed.data.reverse();
     loadedCount = 0;
     container.innerHTML = '';
-
     if (newsData.length === 0) {
       container.textContent = 'Новостей пока нет.';
       return;
     }
-
     loadMoreNews();
 
     container.addEventListener('click', (event) => {
@@ -65,7 +63,6 @@ async function loadNews() {
     });
 
     window.addEventListener('scroll', onScrollLoadMore);
-
   } catch (e) {
     container.textContent = 'Не удалось загрузить новости.';
     console.error(e);

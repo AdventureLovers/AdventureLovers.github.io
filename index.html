@@ -12,18 +12,20 @@
 
 <nav class="side-nav">
   <div class="logo-wrapper dropdown-wrapper">
-    <img src="icon.png" alt="Иконка сервера" class="server-icon dropdown-toggle" tabindex="0" aria-haspopup="true" aria-expanded="false" />
-    <ul class="dropdown-menu" aria-label="Основная навигация">
-      <li><a href="index.html" class="active">Главная</a></li>
-      <li><a href="news.html">Новости</a></li>
-      <li><a href="guide.html">Гайды</a></li>
-      <li><a href="enchantments.html">Чары</a></li>
-      <li><a href="rules.html">Правила</a></li>
-      <li><a href="map.html">Карта</a></li>
+    <img src="icon.png" alt="Иконка сервера" 
+         class="server-icon dropdown-toggle" 
+         tabindex="0" aria-haspopup="true" aria-expanded="false" />
+    <ul class="dropdown-menu" aria-label="Основная навигация" role="menu">
+      <li><a href="index.html" class="active" role="menuitem">Главная</a></li>
+      <li><a href="news.html" role="menuitem">Новости</a></li>
+      <li><a href="guide.html" role="menuitem">Гайды</a></li>
+      <li><a href="enchantments.html" role="menuitem">Чары</a></li>
+      <li><a href="rules.html" role="menuitem">Правила</a></li>
+      <li><a href="map.html" role="menuitem">Карта</a></li>
     </ul>
   </div>
 
-  <!-- Меню всегда видно под иконкой -->
+  <!-- Меню кнопок под иконкой всегда -->
   <a href="index.html" class="active">Главная</a>
   <a href="news.html">Новости</a>
   <a href="guide.html">Гайды</a>
@@ -34,7 +36,7 @@
 
 <div class="content-wrapper horizontal-layout">
 
-  <main class="main-bg-text">
+  <main class="main-bg-text" role="main">
     <div class="main-content-bgimg">
       <div class="main-content-overlay">
         <h1>Уютный модовый сервер для любителей приключений</h1>
@@ -45,7 +47,7 @@
           <p>Наша команда из четырех администраторов поддерживает сервер в актуальном состоянии, оперативно устраняя проблемы и запуская новые увлекательные ивенты. Мы стремимся создать теплое и дружное сообщество, где каждый сможет найти занятие по душе.</p>
           <p>Присоединяйтесь к нашему активному ВК-чату и Discord-серверу! Здесь вы всегда будете в курсе последних новостей, обновлений и увлекательных событий. В нашем сообществе вас ждут разнообразные рубрики и возможность пообщаться с другими игроками.</p>
         </div>
-        <div class="server-ip-row">
+        <div class="server-ip-row" aria-label="IP сервера">
           <span class="server-ip-label">IP сервера:</span>
           <span class="server-ip-value">62.60.230.20</span>
         </div>
@@ -53,7 +55,7 @@
     </div>
   </main>
 
-  <aside class="right-block-vertical">
+  <aside class="right-block-vertical" role="complementary" aria-label="Дополнительная информация">
 
     <section class="event-section">
       <h2>Текущее событие:</h2>

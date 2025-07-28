@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isAnimating = true;
       menu.classList.add('show');
       toggle.setAttribute('aria-expanded', 'true');
-      toggle.classList.add('active'); // светится иконка только при открытом меню
+      toggle.classList.add('active');
       setTimeout(() => { isAnimating = false; }, 350);
     }
 
@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Модальное окно
   if (eventButton && eventModal && modalCloseBtn) {
     function openModal() {
       eventModal.hidden = false;
