@@ -11,12 +11,14 @@
 <body>
 <nav class="side-nav">
   <div class="logo-wrapper dropdown-wrapper">
-    <img src="icon.png" alt="Иконка сервера" class="server-icon dropdown-toggle" tabindex="0" aria-haspopup="true" aria-expanded="false" />
+    <img src="icon.png" alt="Иконка сервера" 
+         class="server-icon dropdown-toggle" 
+         tabindex="0" aria-haspopup="true" aria-expanded="false" />
     <ul class="dropdown-menu" aria-label="Основная навигация">
       <li><a href="index.html" class="active">Главная</a></li>
       <li><a href="news.html">Новости</a></li>
       <li><a href="guide.html">Гайды</a></li>
-      <li><a href="enchantments.html">Зачарования</a></li>
+      <li><a href="enchantments.html">Чары</a></li>
       <li><a href="rules.html">Правила</a></li>
       <li><a href="map.html">Карта</a></li>
     </ul>
@@ -45,10 +47,10 @@
   </main>
 
   <aside class="right-block-vertical">
+
     <section class="event-section">
-      <h2>Текущее событие</h2>
-      <p>Следите за новостями и не пропускайте предстоящие ивенты, где вас ждут драконы, ритуалы и приключения.</p>
-      <img src="news-images/2025-04-08_15.36.40.png" alt="Текущее событие" />
+      <h2>Текущее событие:</h2>
+      <button id="event-button" class="event-button" type="button" aria-haspopup="dialog" aria-controls="event-modal" aria-expanded="false">Починка сайта!</button>
     </section>
 
     <section class="contact-section">
@@ -67,8 +69,21 @@
         allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" 
         title="Discord сервер" loading="lazy"></iframe>
     </section>
+
   </aside>
 
+</div>
+
+<!-- Модальное окно для события -->
+<div id="event-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="event-modal-title" aria-describedby="event-modal-desc" tabindex="-1" hidden>
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Закрыть окно">&times;</button>
+    <h2 id="event-modal-title">Починка сайта!</h2>
+    <p id="event-modal-desc">
+      Добро пожаловать на наш увлекательный модовый SMP-сервер! Следите за новостями и не пропускайте предстоящие ивенты, где вас ждут драконы, ритуалы и приключения.
+      <!-- Здесь можно добавить расширенный текст ивента -->
+    </p>
+  </div>
 </div>
 
 <footer>

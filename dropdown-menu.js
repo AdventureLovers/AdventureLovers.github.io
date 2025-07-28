@@ -1,21 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
   const dropdownWrappers = document.querySelectorAll('.dropdown-wrapper');
+  const eventButton = document.getElementById('event-button');
+  const eventModal = document.getElementById('event-modal');
+  const modalCloseBtn = eventModal?.querySelector('.modal-close');
 
   dropdownWrappers.forEach(wrapper => {
     const toggle = wrapper.querySelector('.dropdown-toggle');
     const menu = wrapper.querySelector('.dropdown-menu');
-
     if (!toggle || !menu) return;
 
-    function toggleMenu(show) {
-      const isOpen = menu.classList.contains('show');
-      if (show === undefined) show = !isOpen;
-      if (show) {
-        menu.classList.add('show');
-        toggle.setAttribute('aria-expanded', 'true');
+    let isAnimating = false;
+
+    function showMenu() {
+      if (isAnimating) return;
+      isAnimating = true;
+      menu.classList.add('show');
+      toggle.setAttribute('aria-expanded', 'true');
+      // Wait for animation to end
+      setTimeout(() => { isAnimating = false; }, 350);
+    }
+
+    function hideMenu() {
+      if (isAnimating) return;
+      isAnimating = true;
+      menu.classList.remove('show');
+      toggle.setAttribute('aria-expanded', 'false');
+      setTimeout(() => { isAnimating = false; }, 350);
+    }
+
+    function toggleMenu() {
+      if (menu.classList.contains('show')) {
+        hideMenu();
       } else {
-        menu.classList.remove('show');
-        toggle.setAttribute('aria-expanded', 'false');
+        showMenu();
       }
     }
 
@@ -29,13 +46,50 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         toggleMenu();
       } else if (e.key === 'Escape' && menu.classList.contains('show')) {
-        toggleMenu(false);
+        hideMenu();
         toggle.focus();
       }
     });
 
     document.addEventListener('click', () => {
-      toggleMenu(false);
+      hideMenu();
     });
   });
+
+  // Модальное окно для события
+  if (eventButton && eventModal && modalCloseBtn) {
+    function openModal() {
+      eventModal.hidden = false;
+      eventButton.setAttribute('aria-expanded', 'true');
+      eventModal.focus();
+    }
+
+    function closeModal() {
+      eventModal.hidden = true;
+      eventButton.setAttribute('aria-expanded', 'false');
+      eventButton.focus();
+    }
+
+    eventButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openModal();
+    });
+
+    modalCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeModal();
+    });
+
+    eventModal.addEventListener('click', (e) => {
+      if (e.target === eventModal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !eventModal.hidden) {
+        closeModal();
+      }
+    });
+  }
 });
