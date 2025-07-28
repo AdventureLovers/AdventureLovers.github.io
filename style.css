@@ -19,13 +19,15 @@ html, body {
 
 /* ------------ Цветовые переменные для фона и акцентов ------------ */
 :root {
-  --color-dark: #341e0e;
+  --color-dark: #2e1a0b;
   --color-mid: #3b230d;
   --color-light: #4e2a0a;
   --color-accent: #ffb84d;
   --color-accent-dark: #ff8c00;
   --color-text: #f5e6c4;
   --color-text-light: #fffbe2;
+  --color-line-light: rgba(255, 184, 77, 0.1);
+  --color-line-dark: rgba(150, 90, 20, 0.15);
 }
 
 /* Кастомный скроллбар */
@@ -156,7 +158,7 @@ nav.side-nav {
   box-shadow: 0 4px 18px 2px #ffb84d55;
 }
 
-/* Главный контейнер всех страниц - фоновой узор */
+/* Главный контейнер всех страниц - абстрактный фон с ломанными линиями */
 .content-wrapper {
   margin-left: 170px;
   max-width: calc(100vw - 170px);
@@ -168,22 +170,24 @@ nav.side-nav {
   color: var(--color-text);
   
   background-color: var(--color-dark);
+
   background-image:
-    radial-gradient(circle at 20% 30%, var(--color-light) 8%, transparent 12%),
-    radial-gradient(circle at 70% 60%, var(--color-light) 6%, transparent 10%),
-    radial-gradient(circle at 40% 80%, var(--color-light) 10%, transparent 14%),
-    linear-gradient(45deg, var(--color-mid) 20%, transparent 20% 30%, var(--color-mid) 30% 50%, transparent 50% 55%, var(--color-mid) 55%),
-    linear-gradient(-45deg, var(--color-mid) 20%, transparent 20% 30%, var(--color-mid) 30% 50%, transparent 50% 55%, var(--color-mid) 55%),
-    linear-gradient(45deg, transparent 70%, var(--color-mid) 70% 85%, transparent 85%),
-    linear-gradient(-45deg, transparent 70%, var(--color-mid) 70% 85%, transparent 85%);
+    linear-gradient(45deg, var(--color-line-light) 25%, transparent 25%, transparent 50%, var(--color-line-light) 50%, var(--color-line-light) 75%, transparent 75%, transparent),
+    linear-gradient(-45deg, var(--color-line-light) 25%, transparent 25%, transparent 50%, var(--color-line-light) 50%, var(--color-line-light) 75%, transparent 75%, transparent),
+    linear-gradient(45deg, var(--color-line-dark) 20%, transparent 20%, transparent 40%, var(--color-line-dark) 40%, var(--color-line-dark) 60%, transparent 60%, transparent 80%, var(--color-line-dark) 80%, var(--color-line-dark) 100%),
+    linear-gradient(-45deg, var(--color-line-dark) 20%, transparent 20%, transparent 40%, var(--color-line-dark) 40%, var(--color-line-dark) 60%, transparent 60%, transparent 80%, var(--color-line-dark) 80%, var(--color-line-dark) 100%);
+  
   background-size:
+    80px 80px,
+    80px 80px,
     160px 160px,
-    160px 160px,
-    160px 160px,
+    160px 160px;
+
+  background-position:
+    0 0,
     40px 40px,
-    40px 40px,
-    40px 40px,
-    40px 40px;
+    0 0,
+    80px 80px;
 
   background-repeat: repeat;
 }
@@ -205,7 +209,6 @@ nav.side-nav {
 .main-bg-text {
   flex: 1 1 auto;
   border-radius: 16px;
-  /* Убираем фон, чтобы проявился фон контейнера */
   background: transparent;
   overflow: auto;
   display: flex;
@@ -442,7 +445,7 @@ h1 {
   text-shadow: 0 0 8px #ffb84d44;
 }
 
-/* Футер теперь НЕ фиксирован, без фона */
+/* Футер — не фиксирован, без фона */
 footer {
   height: 56px;
   line-height: 56px;
@@ -503,7 +506,7 @@ footer {
   padding-bottom: 6px;
 }
 
-/* Обычные маркеры списка для правил */
+/* Стандартные маркеры для правил */
 .rules-list,
 .admin-list {
   list-style: disc inside;
