@@ -213,7 +213,7 @@ nav.side-nav {
   overflow: hidden;
 }
 
-/* Сдвигающий боковой пустой блок */
+/* Пустой левый блок */
 .left-block-empty {
   width: 170px;
   user-select: none;
@@ -221,7 +221,7 @@ nav.side-nav {
   flex-grow: 0;
 }
 
-/* Центральный блок (главная) */
+/* Центральный блок */
 .main-bg-text {
   flex: 1 1 auto;
   border-radius: 16px;
@@ -234,9 +234,10 @@ nav.side-nav {
   box-shadow: 0 6px 40px rgba(255, 140, 0, 0.15), 0 1.5px 0 var(--color-accent) inset;
   position: relative;
   z-index: 1;
+  margin-left: -8px; /* уменьшаем отступ слева для уменьшения промежутка */
 }
 
-/* Фоновой блок поверх .main-bg-text, с прозрачностью, посещаемый img без масштабирования */
+/* Фон-картинка в отдельном блоке */
 .main-content-bgimg {
   position: absolute;
   inset: 0;
@@ -245,7 +246,7 @@ nav.side-nav {
   overflow: hidden;
   z-index: 0;
   opacity: 0.8;
-  transform: scale(1);
+  transform: none;
   transform-origin: center center;
   transition: opacity 0.35s ease;
 }
@@ -255,29 +256,26 @@ nav.side-nav {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0,0,0,0.55);
   border-radius: 16px;
   z-index: 1;
 }
 
-/* Текстовый оверлей */
+/* Текстовый оверлей с отступами */
 .main-content-overlay {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: none;
+  max-width: 900px;
+  margin: 0 auto;
   font-size: 1.02em;
   box-sizing: border-box;
   flex-grow: 1;
   user-select: text;
   color: var(--color-text-light);
-  padding-left: 16px;
-  padding-right: 16px;
-  margin: 0 auto;
-  max-width: 900px; /* ограничиваем ширину текста для удобочитаемости */
+  padding: 0 32px;
 }
 
-/* Заголовки и абзацы остаются без сдвигов */
 .main-bg-text h1 {
   margin-top: 0;
   margin-bottom: 18px;
@@ -294,7 +292,6 @@ nav.side-nav {
   line-height: 1.45;
 }
 
-/* IP сервера стилизован аналогично */
 .server-ip-row {
   margin-top: auto;
   font-weight: bold;
@@ -393,6 +390,26 @@ nav.side-nav {
   box-shadow: 0 4px 18px 2px #ffb84d88;
   outline: none;
 }
+
+/* Остальные стили неизменны... */
+
+footer {
+  height: 56px;
+  line-height: 56px;
+  text-align: center;
+  color: #d9a3a3;
+  text-shadow: 0 0 3px #ffb84d;
+  font-size: 0.9em;
+  box-sizing: border-box;
+  user-select: none;
+  margin-top: auto;
+}
+
+/* (Правила, новости и остальные стили без изменений) */
+
+/* Мобильные адаптации */
+/* ... */
+
 
 /* Контакты */
 .contact-section ul {
@@ -528,7 +545,6 @@ h1 {
   text-shadow: 0 0 8px #ffb84d44;
 }
 
-/* Футер — не фиксированный, без фона */
 footer {
   height: 56px;
   line-height: 56px;

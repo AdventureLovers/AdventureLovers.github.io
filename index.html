@@ -13,7 +13,7 @@
 <nav class="side-nav" role="navigation" aria-label="Основная навигация">
   <div class="logo-wrapper dropdown-wrapper">
     <img src="icon.png" alt="Иконка сервера" class="server-icon dropdown-toggle" tabindex="0"
-      aria-haspopup="true" aria-expanded="false" />
+         aria-haspopup="true" aria-expanded="false" />
     <ul class="dropdown-menu" role="menu" aria-label="Выпадающее меню">
       <li><a href="index.html" class="active" role="menuitem">Главная</a></li>
       <li><a href="news.html" role="menuitem">Новости</a></li>
@@ -25,21 +25,21 @@
   </div>
 </nav>
 
-<!-- Разделитель между меню и основным блоком -->
+<!-- Разделитель между меню и центральным блоком -->
 <aside class="divider" aria-hidden="true"></aside>
 
 <div class="content-wrapper horizontal-layout">
 
-  <!-- Левый блок пустой, сдвигает контент (с шириной меню) -->
+  <!-- Левый блок пустой, сдвигает контент (ширина nav) -->
   <aside class="left-block-empty" aria-hidden="true"></aside>
 
-  <!-- Центральный блок с фоновым изображением и текстом -->
+  <!-- Центральный блок с фоном и текстом -->
   <main class="main-bg-text" role="main">
 
-    <!-- Фон-картинка с затемнением -->
+    <!-- Фон картинка -->
     <div class="main-content-bgimg"></div>
 
-    <!-- Текстовый контейнер с отступами -->
+    <!-- Текст с отступами и ограниченной шириной -->
     <div class="main-content-overlay">
       <h1>Уютный модовый сервер для любителей приключений</h1>
       <div class="server-description">
@@ -67,13 +67,13 @@
     </div>
   </main>
 
-  <!-- Правый блок с тремя вертикальными секциями -->
+  <!-- Правый блок -->
   <aside class="right-block-vertical" role="complementary" aria-label="Дополнительная информация">
 
     <section class="event-section">
       <h2>Текущее событие:</h2>
       <button id="event-button" class="event-button" type="button" aria-haspopup="dialog"
-        aria-controls="event-modal" aria-expanded="false">Починка сайта!</button>
+              aria-controls="event-modal" aria-expanded="false">Починка сайта!</button>
     </section>
 
     <section class="contact-section">
@@ -88,18 +88,18 @@
     <section class="discord-section">
       <h2>Discord сервер</h2>
       <iframe src="https://discord.com/widget?id=1333529212581052417&amp;theme=dark" allowtransparency="true"
-        frameborder="0"
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-        title="Discord сервер" loading="lazy"></iframe>
+              frameborder="0"
+              sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+              title="Discord сервер" loading="lazy"></iframe>
     </section>
 
   </aside>
 
 </div>
 
-<!-- Модальное окно -->
+<!-- Модальное окно события -->
 <div id="event-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="event-modal-title"
-  aria-describedby="event-modal-desc" tabindex="-1" hidden>
+     aria-describedby="event-modal-desc" tabindex="-1" hidden>
   <div class="modal-content">
     <button class="modal-close" aria-label="Закрыть окно">&times;</button>
     <h2 id="event-modal-title">Починка сайта!</h2>
