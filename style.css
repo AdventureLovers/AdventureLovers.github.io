@@ -19,17 +19,17 @@ html, body {
 
 /* ------------ Цветовые переменные для фона и акцентов ------------ */
 :root {
-  --color-dark: #251607;  /* темнее */
-  --color-mid: #332008;
-  --color-light: #432b0b;
+  --color-dark: #1c1207;  /* ещё темнее */
+  --color-mid: #281808;
+  --color-light: #3b210a;
   --color-accent: #ffb84d;
   --color-accent-dark: #ff8c00;
   --color-text: #f5e6c4;
   --color-text-light: #fffbe2;
-  --color-line-light: rgba(255, 184, 77, 0.06);
-  --color-line-dark: rgba(150, 90, 20, 0.1);
-  --divider-color-start: rgba(255, 184, 77, 0.3);
-  --divider-color-end: rgba(39, 25, 10, 0.8);
+  --color-line-light: rgba(255, 184, 77, 0.04);
+  --color-line-dark: rgba(150, 90, 20, 0.07);
+  --divider-color-start: rgba(255, 184, 77, 0.25);
+  --divider-color-end: rgba(39, 25, 10, 0.7);
 }
 
 /* Кастомный скроллбар */
@@ -42,12 +42,12 @@ body::-webkit-scrollbar-track {
   border-radius: 6px;
 }
 body::-webkit-scrollbar-thumb {
-  background: #ffb84d99;
+  background: #ffb84d88;
   border-radius: 10px;
   border: 2px solid var(--color-mid);
 }
 body::-webkit-scrollbar-thumb:hover {
-  background: #ffb84dbb;
+  background: #ffb84daa;
 }
 
 /* Навигация слева */
@@ -169,7 +169,7 @@ nav.side-nav {
   box-shadow: 0 4px 18px 2px #ffb84d55;
 }
 
-/* Главный контейнер всех страниц - абстрактный темный фон с ломаными линиями */
+/* Главный контейнер всех страниц - более тёмный абстрактный фон с ломаными линиями и сглаженными гранями */
 .content-wrapper {
   margin-left: 170px;
   max-width: calc(100vw - 170px);
@@ -231,9 +231,12 @@ nav.side-nav {
   background-size: 80px 80px, 80px 80px, 160px 160px, 160px 160px;
   background-position: 0 0, 40px 40px, 0 0, 80px 80px;
   background-repeat: repeat;
+
+  /* Добавим лёгкое размытие границ */
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.25));
 }
 
-/* Разделитель между левым меню и центром (фиксирован) */
+/* Разделитель между левым меню и центром */
 .content-wrapper::before {
   content: "";
   position: fixed;
@@ -277,7 +280,7 @@ nav.side-nav {
   position: relative;
 }
 
-/* Здесь фон-картинка в блоке .main-content-bgimg, который занимает всю площадь главного блока */
+/* Фон-картинка растянута абсолютно на весь блок .main-bg-text */
 .main-content-bgimg {
   position: absolute;
   inset: 0;
@@ -285,9 +288,13 @@ nav.side-nav {
   border-radius: 16px;
   overflow: hidden;
   z-index: 0;
+  opacity: 0.8; /* чуть прозрачнее */
+  transform: scale(0.95); /* чуть меньше, чтобы граница лучше была видна */
+  transform-origin: center center;
+  transition: opacity 0.35s ease;
 }
 
-/* Полупрозрачный затемняющий слой поверх фонового изображения для лучшей читаемости */
+/* Полупрозрачная затемняющая подложка поверх картинки */
 .main-content-bgimg::before {
   content: "";
   position: absolute;
