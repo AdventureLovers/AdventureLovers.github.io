@@ -9,10 +9,17 @@
 
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
   font-family: 'Georgia', serif;
   font-size: 1.1em;
   background: linear-gradient(135deg, #2c1a0f 0%, #4e2a0a 100%);
   color: #f5e6c4;
+
+  /* Для расположения footer внизу */
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh; /* можно заменить на 100vh для поддержки в старых браузерах */
   overflow-y: auto;
   scroll-behavior: smooth;
 }
@@ -185,13 +192,15 @@ nav.side-nav {
 .content-wrapper {
   margin-left: 170px;
   max-width: calc(100vw - 170px);
-  min-height: 100vh;
-  padding: 20px 32px 80px;
+  padding: 20px 32px 0 32px; /* убрать нижний паддинг для футера */
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  color: var(--color-text);
 
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-grow: 1; /* Ключевое: занять доступное пространство */
+
+  color: var(--color-text);
   background-color: var(--color-dark);
 
   background-image:
@@ -199,42 +208,40 @@ nav.side-nav {
     linear-gradient(-45deg, var(--color-line-light) 25%, transparent 25%, transparent 50%, var(--color-line-light) 50%, var(--color-line-light) 75%, transparent 75%, transparent),
     linear-gradient(45deg, var(--color-line-dark) 20%, transparent 20%, transparent 40%, var(--color-line-dark) 40%, var(--color-line-dark) 60%, transparent 60%, transparent 80%, var(--color-line-dark) 80%, var(--color-line-dark) 100%),
     linear-gradient(-45deg, var(--color-line-dark) 20%, transparent 20%, transparent 40%, var(--color-line-dark) 40%, var(--color-line-dark) 60%, transparent 60%, transparent 80%, var(--color-line-dark) 80%, var(--color-line-dark) 100%);
-
   background-size: 80px 80px, 80px 80px, 160px 160px, 160px 160px;
   background-position: 0 0, 40px 40px, 0 0, 80px 80px;
   background-repeat: repeat;
   filter: drop-shadow(0 0 4px rgba(0,0,0,0.25));
 }
 
-/* Для главной страницы */
-.horizontal-layout {
-  flex-direction: row;
-  gap: 16px;
-  overflow: hidden;
+/* Для главной страницы - горизонтальный лайаут */
+.content-wrapper.horizontal-layout {
+  /* Уже flex-row + gap 16px из блока выше */
+  align-items: stretch; /* по высоте выравниваем блоки */
 }
 
-/* Пустой левый блок */
+/* Левый блок пустой */
 .left-block-empty {
   width: 170px;
-  user-select: none;
   flex-shrink: 0;
+  user-select: none;
   flex-grow: 0;
 }
 
 /* Центральный блок */
 .main-bg-text {
-  flex: 1 1 auto;
+  flex-grow: 1;
   border-radius: 16px;
   background: transparent;
-  overflow: auto;
   display: flex;
   flex-direction: column;
   color: var(--color-text);
-  padding: 36px 48px 32px;
+  padding: 36px 32px 32px 32px;
   box-shadow: 0 6px 40px rgba(255, 140, 0, 0.15), 0 1.5px 0 var(--color-accent) inset;
   position: relative;
   z-index: 1;
-  margin-left: -8px; /* уменьшаем отступ слева для уменьшения промежутка */
+  margin-left: 0; /* убрать отрицательный margin */
+  overflow: visible; /* убрать прокрутку */
 }
 
 /* Фон-картинка в отдельном блоке */
@@ -243,7 +250,6 @@ nav.side-nav {
   inset: 0;
   background: url('news-images/2025-04-08_15.36.40.png') center center / cover no-repeat;
   border-radius: 16px;
-  overflow: hidden;
   z-index: 0;
   opacity: 0.8;
   transform: none;
@@ -251,7 +257,7 @@ nav.side-nav {
   transition: opacity 0.35s ease;
 }
 
-/* Затемняющая подложка */
+/* Затемняющий фон */
 .main-content-bgimg::before {
   content: "";
   position: absolute;
@@ -261,7 +267,7 @@ nav.side-nav {
   z-index: 1;
 }
 
-/* Текстовый оверлей с отступами */
+/* Оверлей с текстом */
 .main-content-overlay {
   position: relative;
   z-index: 2;
@@ -276,54 +282,10 @@ nav.side-nav {
   padding: 0 32px;
 }
 
-.main-bg-text h1 {
-  margin-top: 0;
-  margin-bottom: 18px;
-  color: var(--color-accent);
-  text-shadow: 0 0 8px #ffb84d44;
-  letter-spacing: 0.04em;
-  font-weight: bold;
-  font-family: 'Georgia', serif;
-}
-
-.server-description p {
-  margin-top: 0;
-  margin-bottom: 1em;
-  line-height: 1.45;
-}
-
-.server-ip-row {
-  margin-top: auto;
-  font-weight: bold;
-  color: var(--color-accent);
-  background: #3e2a13cc;
-  border-radius: 8px;
-  padding: 8px 18px;
-  box-shadow: 0 0 8px #ffb84d66;
-  border: 2px solid var(--color-accent);
-  width: fit-content;
-  user-select: text;
-}
-
-.server-ip-label {
-  font-weight: bold;
-  font-size: 1em;
-  letter-spacing: 0.03em;
-  margin-right: 8px;
-}
-
-.server-ip-value {
-  color: var(--color-text-light);
-  font-weight: bold;
-  font-size: 1.12em;
-  letter-spacing: 0.06em;
-  text-shadow: 0 0 8px #ffb84d77;
-}
-
 /* Правая колонка */
 .right-block-vertical {
   width: 300px;
-  max-width: 300px;
+  flex-shrink: 0;
   background:
     linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%),
     url('news-images/2025-04-08_15.36.40.png') center center / cover no-repeat;
@@ -336,9 +298,9 @@ nav.side-nav {
   color: var(--color-text);
   user-select: text;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
+/* Секции внутри правого блока */
 .right-block-vertical section {
   padding-bottom: 12px;
   border-bottom: 1px solid #ffb84d55;
@@ -391,9 +353,9 @@ nav.side-nav {
   outline: none;
 }
 
-/* Остальные стили неизменны... */
-
+/* Футер */
 footer {
+  margin-top: auto; /* прижать футер к низу */
   height: 56px;
   line-height: 56px;
   text-align: center;
@@ -402,14 +364,9 @@ footer {
   font-size: 0.9em;
   box-sizing: border-box;
   user-select: none;
-  margin-top: auto;
 }
 
-/* (Правила, новости и остальные стили без изменений) */
-
-/* Мобильные адаптации */
-/* ... */
-
+/* Остальные стили неизменны... */
 
 /* Контакты */
 .contact-section ul {
@@ -657,15 +614,17 @@ footer {
   outline: none;
 }
 
-/* Мобильная адаптация */
+/* Мобильные адаптации */
 @media (max-width: 900px) {
   .content-wrapper {
     margin-left: 0;
     max-width: 100vw;
     padding: 20px 20px 80px;
+    flex-direction: column;
   }
   .horizontal-layout {
     flex-direction: column;
+    gap: 0;
   }
   .left-block-empty {
     display: none;
